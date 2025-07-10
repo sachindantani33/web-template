@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smooth Scroll with Offset</title>
+  <style>
+    /* Reset default margin */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Fixed Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    /* Navigation Links */
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 20px;
+      min-height: 100vh;
+    }
+
+    #about {
+      background-color: #f9f9f9;
+    }
+
+    #services {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="main-header">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+    </nav>
+  </header>
+
+  <!-- Sections -->
+  <section id="about">
+    <h2>About Section</h2>
+    <p>This is the about section. Scroll here smoothly.</p>
+  </section>
+
+  <section id="services">
+    <h2>Services Section</h2>
+    <p>This is the services section. It stops below the fixed header.</p>
+  </section>
+
+  <!-- JavaScript for Smooth Scroll with Header Offset -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const headerOffset = document.getElementById("main-header").offsetHeight;
+        const targetId = this.getAttribute("href").substring(1);
+        const targetElement = document.getElementById(targetId);
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+https://bootstrapmade.com/demo/Strategy/
