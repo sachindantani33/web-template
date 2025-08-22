@@ -130,6 +130,8 @@ h5{
 .about-card{
   width: 320px;
   height: 210px;
+  background-color: #1B262C;
+  border-radius: 5px;
 }
 
 
