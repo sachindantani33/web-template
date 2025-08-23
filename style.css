@@ -15,6 +15,7 @@ body{
     position: sticky;
     top: 60px;
     z-index: 999;
+    min-width: 800px;
     
     
 }
